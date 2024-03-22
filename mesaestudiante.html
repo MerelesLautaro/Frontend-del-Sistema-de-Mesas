@@ -46,25 +46,10 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Administrar
+                Operaciones
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-solid fa-users"></i>
-                    <span>Cuentas</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="alumnos.html">Alumnos</a>
-                        <a class="collapse-item" href="profesores.html">Profesores</a>
-                        <a class="collapse-item" href="admin.html">Administradores</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -78,24 +63,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Acciones:</h6>
                         <a class="collapse-item" href="mesas.html">Mesas</a>
-                        <a class="collapse-item" href="inscripcionesadmin.html">Inscripciones</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Usuarios Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapUsuarios"
-                    aria-expanded="true" aria-controls="collapUsuarios">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Usuarios</span>
-                </a>
-                <div id="collapUsuarios" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="usuarios.html">Usuarios</a>
-                        <a class="collapse-item" href="rol.html">Roles</a>
+                        <a class="collapse-item" href="inscripciones.html">Mis Inscripciones</a>
                     </div>
                 </div>
             </li>
@@ -113,7 +81,7 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
+            
             <!-- Main Content -->
             <div id="content">
 
@@ -128,7 +96,7 @@
                     </form>
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">                      
+                    <ul class="navbar-nav ml-auto">
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -140,7 +108,7 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">                               
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Configuración
@@ -158,56 +126,54 @@
                 </nav>
                 <!-- End of Topbar -->
                 <div class="container-fluid">
-                    <h1>Alta Alumnos</h1>
+                    <h1>Mesas de Examen</h1>
+                    <p class="mb-4">Seleccione la Mesa deseada en la tabla y elija la fecha en la cual se va a presentar.</p>
                     <hr>
-                    <form class="user" id="formulario" onsubmit="event.preventDefault(); crearAlumno();">
+                    <form class="user" id="formulario" onsubmit="event.preventDefault(); inscribirMesa();">
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label class="h6 text-dark">Nombre del Alumno</label>
-                                <input type="text" class="form-control" id="txtNombre"
-                                    placeholder="Nombre del Alumno">
-                                <input type="hidden" name="id" id="txtIdAlumno">
+                                <label class="h6 text-dark">Propuesta</label>
+                                <input type="text" class="form-control" id="txtPropuesta" placeholder="Nombre de la Propuesta" readonly>                                
                             </div>
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label class="h6 text-dark">Apellido del Alumno</label>
-                                <input type="text" class="form-control" id="txtApellido"
-                                    placeholder="Apellido del Alumno">
+                                <label class="h6 text-dark">Nombre de la Materia</label>
+                                <input type="text" class="form-control" id="txtMateria" placeholder="Nombre de la Materia" readonly>
+                                <input type="hidden" name="id" id="txtIdMesa" readonly>
                             </div>
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label class="h6 text-dark">Dni del Alumno</label>
-                                <input type="text" class="form-control" id="txtDni"
-                                    placeholder="Dni del Alumno">
-                            </div>
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label class="h6 text-dark">Telefono del Alumno</label>
-                                <input type="text" class="form-control" id="txtTelefono"
-                                    placeholder="Telefono del Alumno">
-                            </div>
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label class="h6 text-dark">Usuario</label>               
-                                <select type="text" class="form-control" id="txtUsuario"
-                                       >
-                                    <option value=""></option>
+                                <label class="h6 text-dark">Seleccione fecha en la que decide presentarse</label>
+                                <select class="form-control" id="txtFechaLlamado">
+                                    <option value="Primer Llamado">Primer Llamado</option>
+                                    <option value="Segundo Llamado">Segundo Llamado</option>
                                 </select>
                             </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label class="h6 text-dark">Presidente</label>
+                                <input type="text" class="form-control" id="txtPresidente" placeholder="Presidente de Mesa" readonly>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label class="h6 text-dark">Primer Vocal</label>
+                                <input type="text" class="form-control" id="txtPrimerVocal" placeholder="Primer Vocal de Mesa" readonly>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label class="h6 text-dark">Segundo Vocal</label>
+                                <input type="text" class="form-control" id="txtSegundoVocal" placeholder="Segundo Vocal de Mesa" readonly>
+                            </div>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center">
+                        <div style="display: flex; justify-content: center; align-items: center">
                             <button class="btn btn-primary btn-user btn-block col-sm-4" type="submit">
-                                Crear Alumno
-                            </button>
-                            <button id="editarUsuarioBtn" class="btn btn-primary btn-user btn-block col-sm-4" type="button">
-                                Editar Alumno
+                                Inscribirme a la Mesa
                             </button>
                         </div>
                         <hr>
                     </form>
-                    <h1 class="h3 mb-2 text-gray-800">Alumnos</h1>
-                    <p class="mb-4">Crear o Editar Alumnos</p>
-
+                    <h1 class="h3 mb-2 text-gray-800">Mesas</h1>
+                    <p class="mb-4">Mesas de examen disponibles, recorda darte de baja desde 'Mis Inscripciones' en caso de no presentarte.</p>
+    
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Alumnos</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Mesas</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -215,22 +181,26 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>DNI</th>
-                                            <th>Telefono</th>
-                                            <th>Usuario</th>
+                                            <th>Propuesta</th>
+                                            <th>Materia</th>
+                                            <th>Primer llamado</th>
+                                            <th>Segundo llamado</th>
+                                            <th>Presidente</th>
+                                            <th>Primer Vocal</th>
+                                            <th>Segundo Vocal</th>
                                             <th style="width: 210px">Acción</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>DNI</th>
-                                            <th>Telefono</th>
-                                            <th>Usuario</th>
+                                            <th>Propuesta</th>
+                                            <th>Materia</th>
+                                            <th>Primer llamado</th>
+                                            <th>Segundo llamado</th>
+                                            <th>Presidente</th>
+                                            <th>Primer Vocal</th>
+                                            <th>Segundo Vocal</th>
                                             <th style="width: 210px">Acción</th>
                                         </tr>
                                     </tfoot>
@@ -242,65 +212,82 @@
                     </div>
 
                 <!-- Begin Page Content -->
-            <!-- End of Main Content -->
+                <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2020</span>
+                        </div>
                     </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="login.html">Cerrar Sesión</a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
+                        sesión actual.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-primary" href="login.html">Cerrar Sesión</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <div class="modal fade" id="inscripcionExitosaModal" tabindex="-1" role="dialog" aria-labelledby="inscripcionExitosaModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inscripcionExitosaModalLabel">Inscripción realizada con éxito</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">¡Felicidades! Tu inscripción se ha realizado con éxito.
+                        Recorda que podes ver todas tus inscripciones desde 'Mis Inscripciones'
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-alumnos.js"></script>
+        <!-- Page level plugins -->
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <script src="js/demo/datatables-mesaestudiante.js"></script>
 
 </body>
 
